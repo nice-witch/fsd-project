@@ -1,11 +1,7 @@
 import {defineStore} from 'pinia';
-import {computed, ref} from 'vue'
-import {useCityStory} from "@/entities/SelectCity/model/cityStore.js";
+import {ref} from 'vue'
 
 export const useFactoryStores = defineStore('factory', () => {
-  // const cityStory = useCityStory();
-  // const selectCity = computed(() => cityStory.selectCity);
-
   const selectFactory = ref();
   const factories = ref([
     {
@@ -21,7 +17,7 @@ export const useFactoryStores = defineStore('factory', () => {
     {
       id: 3,
       name: 'холодный цех',
-      cityId: 3,
+      cityId: 2,
     },
     {
       id: 4,
@@ -40,15 +36,14 @@ export const useFactoryStores = defineStore('factory', () => {
     },
   ]);
 
-  // const availableFactories = computed(() => {
-  //   console.log(selectCity.value)
-  //   if(!selectCity.value) return [];
-  //   return factories.value.filter((f) => f.cityId === selectCity.value.id);
-  // })
+  function availableFactories(cityId) {
+    if(!cityId) return [];
+    return factories.value.filter((f) => f.cityId === cityId);
+  }
 
   function changeFactory(factory) {
     selectFactory.value = factory;
   }
 
-  return {selectFactory, factories, changeFactory}
+  return {selectFactory, changeFactory, availableFactories}
 })
