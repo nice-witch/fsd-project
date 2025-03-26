@@ -34,6 +34,7 @@ const setSelectItem = () => {
 <style scoped>
 .select {
   width: 100%;
-  padding: 15px 8px;
+  padding: 10px 8px;
+  cursor: pointer;
 }
 </style>
