@@ -1,13 +1,17 @@
 <script setup>
-import {computed} from 'vue';
+import {computed, defineProps} from 'vue';
 import MySelect from '@/shared/ui/MySelect.vue'
 import {useEmployeeStory} from "@/entities/SelectEmployee/model/employeeStore.js";
+
+const props = defineProps({
+  factoryId: Number,
+});
 
 const store = useEmployeeStory();
 
 const defaultValue = 'Выберите сотрудника';
 const select = computed(() => store.selectEmployee);
-const options = store.employee;
+const options = computed(() => store.availableEmployee(props.factoryId));
 
 const changeSelect = (item) => store.changeEmployee(item);
 </script>

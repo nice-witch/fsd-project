@@ -1,13 +1,17 @@
 <script setup>
-import {computed} from 'vue';
+import {computed, defineProps} from 'vue';
 import MySelect from '@/shared/ui/MySelect.vue'
 import {useFactoryStores} from "@/entities/SelectFactory/model/factoryStore.js";
+
+const props = defineProps({
+  cityId: Number,
+});
 
 const store = useFactoryStores();
 
 const defaultValue = 'Выберите цех';
 const select = computed(() => store.selectFactory);
-const options = store.factories;
+const options = computed(() => store.availableFactories(props.cityId));
 
 const changeSelect = (item) => store.changeFactory(item);
 </script>
