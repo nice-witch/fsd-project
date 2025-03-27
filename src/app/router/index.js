@@ -14,7 +14,7 @@ const router = createRouter({
     {
       path: '/result',
       name: 'result',
-      component: () => ResultPage,
+      component: ResultPage,
     },
   ],
 })
